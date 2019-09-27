@@ -1,38 +1,26 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>binhex-airsonic</Name>
-  <Repository>binhex/arch-airsonic</Repository>
-  <Registry>https://registry.hub.docker.com/u/binhex/arch-airsonic/</Registry>
+  <Name>airsonic</Name>
+  <Repository>linuxserver/airsonic</Repository>
+  <Registry>https://hub.docker.com/r/linuxserver/airsonic/</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://forums.lime-technology.com/topic/59427-support-binhex-airsonic/</Support>
-  <Project>https://github.com/airsonic/airsonic</Project>
-  <Overview>&#xD;
-    Airsonic is a free, web-based media streamer, providing ubiquitious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room.[br]&#xD;
-    Airsonic is designed to handle very large music collections (hundreds of gigabytes). Although optimized for MP3 streaming, it works for any audio or video format that can stream over HTTP, for instance AAC and OGG. By using transcoder plug-ins, Airsonic supports on-the-fly conversion and streaming of virtually any audio format, including WMA, FLAC, APE, Musepack, WavPck and Shorten.[br]&#xD;
-    If you have constrained bandwidth, you may set an upper limit for the bitrate of the music streams. Airsonic will then automatically resample the music to a suitable bitrate.[br]&#xD;
-    In addition to being a streaming media server, Airsonic works very well as a local jukebox. The intuitive web interface, as well as search and index facilities, are optimized for efficient browsing through large media libraries. Airsonic also comes with an integrated Podcast receiver, with many of the same features as you find in iTunes.[br]&#xD;
-    Based on Java technology, Airsonic runs on most platforms, including Windows, Mac, Linux and Unix variants.[br][br]&#xD;
-  </Overview>
-  <Category>MediaServer:Music</Category>
-  <WebUI>http://[IP]:[PORT:4040]/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/binhex/docker-templates/master/binhex/airsonic.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/binhex/docker-templates/master/binhex/images/airsonic-icon.png</Icon>
+  <Support>https://forums.unraid.net/topic/62456-support-linuxserverio-airsonic/</Support>
+  <Project>https://airsonic.github.io/</Project>
+  <Overview>Airsonic is a free, web-based media streamer, providing ubiqutious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room.</Overview>
+  <Category>MediaApp:Music MediaServer:Music </Category>
+  <WebUI>http://[IP]:[PORT:4040]/airsonic</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/airsonic.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/airsonic-logo.png</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
-  <DateInstalled>1569611314</DateInstalled>
-  <DonateText>If you appreciate my work, then please consider buying me a beer :D</DonateText>
-  <DonateLink>https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=MM5E27UX6AUU4</DonateLink>
-  <Description>&#xD;
-    Airsonic is a free, web-based media streamer, providing ubiquitious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room.[br]&#xD;
-    Airsonic is designed to handle very large music collections (hundreds of gigabytes). Although optimized for MP3 streaming, it works for any audio or video format that can stream over HTTP, for instance AAC and OGG. By using transcoder plug-ins, Airsonic supports on-the-fly conversion and streaming of virtually any audio format, including WMA, FLAC, APE, Musepack, WavPck and Shorten.[br]&#xD;
-    If you have constrained bandwidth, you may set an upper limit for the bitrate of the music streams. Airsonic will then automatically resample the music to a suitable bitrate.[br]&#xD;
-    In addition to being a streaming media server, Airsonic works very well as a local jukebox. The intuitive web interface, as well as search and index facilities, are optimized for efficient browsing through large media libraries. Airsonic also comes with an integrated Podcast receiver, with many of the same features as you find in iTunes.[br]&#xD;
-    Based on Java technology, Airsonic runs on most platforms, including Windows, Mac, Linux and Unix variants.[br][br]&#xD;
-  </Description>
+  <DateInstalled>1569613306</DateInstalled>
+  <DonateText>Donations</DonateText>
+  <DonateLink>https://www.linuxserver.io/donate</DonateLink>
+  <Description>Airsonic is a free, web-based media streamer, providing ubiqutious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room.</Description>
   <Networking>
     <Mode>bridge</Mode>
     <Publish>
@@ -45,32 +33,32 @@
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user</HostDir>
+      <HostDir>/mnt/user/music/</HostDir>
+      <ContainerDir>/music</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/media/playlists/</HostDir>
+      <ContainerDir>/playlists</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/podcasts/</HostDir>
+      <ContainerDir>/podcasts</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/media/</HostDir>
       <ContainerDir>/media</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
-      <HostDir>/mnt/user/appdata/binhex-airsonic</HostDir>
+      <HostDir>/mnt/user/appdata/airsonic</HostDir>
       <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
   <Environment>
-    <Variable>
-      <Value>/</Value>
-      <Name>CONTEXT_PATH</Name>
-      <Mode/>
-    </Variable>
-    <Variable>
-      <Value>2046</Value>
-      <Name>MAX_MEMORY</Name>
-      <Mode/>
-    </Variable>
-    <Variable>
-      <Value>000</Value>
-      <Name>UMASK</Name>
-      <Mode/>
-    </Variable>
     <Variable>
       <Value>99</Value>
       <Name>PUID</Name>
@@ -81,25 +69,28 @@
       <Name>PGID</Name>
       <Mode/>
     </Variable>
+    <Variable>
+      <Value>/airsonic</Value>
+      <Name>CONTEXT_PATH</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>-Xms256m -Xmx512m</Value>
+      <Name>JAVA_OPTS</Name>
+      <Mode/>
+    </Variable>
   </Environment>
   <Labels/>
-  <Config Name="Host Port 1" Target="4040" Default="4040" Mode="tcp" Description="Container Port: 4040" Type="Port" Display="always" Required="true" Mask="false">4040</Config>
-  <Config Name="Host Path 2" Target="/media" Default="/mnt/user" Mode="rw" Description="Container Path: /media" Type="Path" Display="always" Required="true" Mask="false">/mnt/user</Config>
-  <Config Name="Key 1" Target="CONTEXT_PATH" Default="/" Mode="" Description="Container Variable: CONTEXT_PATH" Type="Variable" Display="always" Required="false" Mask="false">/</Config>
-  <Config Name="Key 2" Target="MAX_MEMORY" Default="2046" Mode="" Description="Container Variable: MAX_MEMORY" Type="Variable" Display="always" Required="false" Mask="false">2046</Config>
-  <Config Name="Key 3" Target="UMASK" Default="000" Mode="" Description="Container Variable: UMASK" Type="Variable" Display="always" Required="false" Mask="false">000</Config>
-  <Config Name="Key 4" Target="PUID" Default="99" Mode="" Description="Container Variable: PUID" Type="Variable" Display="always" Required="false" Mask="false">99</Config>
-  <Config Name="Key 5" Target="PGID" Default="100" Mode="" Description="Container Variable: PGID" Type="Variable" Display="always" Required="false" Mask="false">100</Config>
-  <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/binhex-airsonic" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false">/mnt/user/appdata/binhex-airsonic</Config>
   <Config Name="User ID" Target="PUID" Default="99" Mode="" Description="Set to Desired User ID" Type="Variable" Display="always" Required="true" Mask="false">99</Config>
   <Config Name="Group ID" Target="PGID" Default="100" Mode="" Description="Set to Desired Group ID" Type="Variable" Display="always" Required="true" Mask="false">100</Config>
   <Config Name="Music" Target="/music" Default="" Mode="rw" Description="Container Path: /music" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/music/</Config>
-  <Config Name="Playlists" Target="/playlists" Default="" Mode="rw" Description="Container Path: /playlists" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/music/playlists</Config>
+  <Config Name="Playlists" Target="/playlists" Default="" Mode="rw" Description="Container Path: /playlists" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/media/playlists/</Config>
   <Config Name="Podcasts" Target="/podcasts" Default="" Mode="rw" Description="Container Path: /podcasts" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/podcasts/</Config>
   <Config Name="Media" Target="/media" Default="" Mode="rw" Description="Container Path: /media" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/media/</Config>
-  <Config Name="CONTEXT_PATH" Target="CONTEXT_PATH" Default="airsonic" Mode="" Description="Container Variable: CONTEXT_PATH" Type="Variable" Display="always" Required="false" Mask="false">airsonic</Config>
-  <Config Name="JAVA_OPTS" Target="JAVA_OPTS" Default="-Xms256m -Xmx512m" Mode="" Description="Container Variable: JAVA_OPTS" Type="Variable" Display="always" Required="false" Mask="false">-Xms256m -Xmx512m -Dserver.use-forward-headers=true -Dserver.context-path=/</Config>
-  <Config Name="traefik.enable" Target="traefik.enable" Default="" Mode="" Description="Container Label: traefik.enable" Type="Label" Display="always" Required="false" Mask="false">true</Config>
+  <Config Name="CONTEXT_PATH" Target="CONTEXT_PATH" Default="airsonic" Mode="" Description="Container Variable: CONTEXT_PATH" Type="Variable" Display="always" Required="false" Mask="false">/airsonic</Config>
+  <Config Name="JAVA_OPTS" Target="JAVA_OPTS" Default="-Xms256m -Xmx512m" Mode="" Description="Container Variable: JAVA_OPTS" Type="Variable" Display="always" Required="false" Mask="false">-Xms256m -Xmx512m</Config>
+  <Config Name="Port" Target="4040" Default="4040" Mode="tcp" Description="Container Port: 4040" Type="Port" Display="always" Required="true" Mask="false">4040</Config>
+  <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/airsonic" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false">/mnt/user/appdata/airsonic</Config>  <Config Name="traefik.enable" Target="traefik.enable" Default="" Mode="" Description="Container Label: traefik.enable" Type="Label" Display="always" Required="false" Mask="false">true</Config>
   <Config Name="traefik.docker.network" Target="traefik.docker.network" Default="" Mode="" Description="Container Label: traefik.docker.network" Type="Label" Display="always" Required="false" Mask="false">frontend</Config>
   <Config Name="traefik.http.routers.airsonic.rule" Target="traefik.http.routers.airsonic.rule" Default="" Mode="" Description="Container Label: traefik.http.routers.airsonic.rule" Type="Label" Display="always" Required="false" Mask="false">Host(`airsonic.yeradonkey.com`)</Config>
   <Config Name="traefik.http.routers.airsonic.entrypoints" Target="traefik.http.routers.airsonic.entrypoints" Default="" Mode="" Description="Container Label: traefik.http.routers.airsonic.entrypoints" Type="Label" Display="always" Required="false" Mask="false">web-secure</Config>
